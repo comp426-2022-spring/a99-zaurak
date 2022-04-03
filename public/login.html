@@ -7,10 +7,35 @@
     <title>Login Page</title>
 </head>
 <body>
-    <form action="/user/sign-in" method="post">
+    <form onsubmit="handlelogin(event)">
         <input type="text" id="username" name="username">
         <input type="text" id="password" name="password">
         <input type="submit" value="Submit">
     </form>
 </body>
+    <script>
+        const handlelogin = (e) => {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value; 
+            console.log(username, password)
+            fetch("/user/sign-in", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                redirect: 'follow',
+                body: JSON.stringify({username: username, password: password})
+            }).then(res => {
+                if (!res.ok) {
+                    return alert('Invalid Username and/or Password.');
+                }
+                if (res.redirected) {
+                    return window.location.href = res.url; 
+                }
+            }).catch((err) => {
+                console.log(err)
+            })
+        }
+    </script>
 </html>

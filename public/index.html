@@ -10,8 +10,25 @@
     <body>
         <h1>COVID-19 Dashboard</h1>
 
-        <form action="/user/sign-out" method="get">
+        <form onsubmit="handlelogout(event)">
             <input type='submit' value="Logout">
         </form>
     </body>
+    <script>
+        const handlelogout = (e) => {
+            e.preventDefault();
+            fetch("/user/sign-out", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                redirect: 'follow',
+            }).then(res => {
+                console.log(res)
+                if (res.redirected) {
+                window.location.href = res.url; 
+            }
+            }).catch(err => console.log(err))
+        }
+    </script>
 </html>
