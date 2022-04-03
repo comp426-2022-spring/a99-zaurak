@@ -21,13 +21,13 @@ app.get("/", (req, res) => {
 app.get("/app", (req, res) => {
     const token = req.cookies.access_token
     if (token === undefined) {
-        return res.redirect("/app/login")
+        return res.status(301).redirect("/app/login")
     }
     try {
         const data = jwt.verify(token, secret.SECRET);
-        return res.redirect("/app/dashboard")
+        return res.status(301).redirect("/app/dashboard")
     } catch {
-        return res.redirect("/app/login"); 
+        return res.status(301).redirect("/app/login"); 
     }
     
 })
@@ -38,11 +38,11 @@ app.get("/app/dashboard", (req, res) => {
     if (token === undefined) {
         return res.redirect("/app/login")
     }
-    res.sendFile(path.join(__dirname, "/public/index.html"))
+    res.status(200).sendFile(path.join(__dirname, "/public/index.html"))
 })
 
 app.get("/app/login", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/login.html"))
+    res.status(200).sendFile(path.join(__dirname, "/public/login.html"))
 })
 
 //Checks if fields passed to endpoint satisfy requirement
@@ -67,7 +67,7 @@ app.post("/user/sign-in", (req, res) => {
     res.cookie("access_token", token, {
         httpOnly: true,
     })
-    .status(200)
+    .status(301)
     .redirect("/app")
 })
 
@@ -97,9 +97,9 @@ app.use("/user/sign-up", (req, res, next) => {
 app.get("/user/sign-out", (req, res) => {
     const token = req.cookies.access_token
     if (token === undefined) {
-        return res.redirect("/app/login")
+        return res.status(301).redirect("/app/login")
     }
-    res.clearCookie('access_token').redirect("/app")
+    res.clearCookie('access_token').status(301).redirect("/app")
 });
 
 app.use((req, res) => {
