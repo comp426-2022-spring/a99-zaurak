@@ -1,106 +1,126 @@
 const express = require('express');
 const path = require('path');
-const secret = require("./secret")
+const secret = require("./secret");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser"); 
 const db = require("./database"); 
-const { body, validationResult } = require('express-validator')
+const { body, validationResult } = require('express-validator');
 const app = express();
 const port = 3000; 
 
 
-// app.use("/app", express.static('./public'));
+//Middleware used to turn fetch json data into JS object
 app.use(express.json())
+//Middleware used to parse cookies passed along HTTP request as JS object
 app.use(cookieParser())
-app.use(express.urlencoded({extended:true}))
 
+
+//Redirects requests to dashboard
 app.get("/", (req, res) => {
-    res.redirect("/app")
-})
-
-app.get("/app", (req, res) => {
-    const token = req.cookies.access_token
-    if (token === undefined) {
-        return res.status(301).redirect("/app/login")
-    }
-    try {
-        const data = jwt.verify(token, secret.SECRET);
-        return res.status(301).redirect("/app/dashboard")
-    } catch {
-        return res.status(301).redirect("/app/login"); 
-    }
-    
-})
+    res.redirect("/app/dashboard")
+});
 
 
+//Dashboard Logic
 app.get("/app/dashboard", (req, res) => {
+    //Checks for cookie object holding access_token
     const token = req.cookies.access_token
+    //If the cookie does not exists, the user hass not signed in yet
     if (token === undefined) {
         return res.redirect("/app/login")
     }
-    res.status(200).sendFile(path.join(__dirname, "/public/index.html"))
-})
+    //The cookie exists, verify the token inside is legitimate
+    try {
+        const data = jwt.verify(token, secret.SECRET);
+        return res.status(200).sendFile(path.join(__dirname, "/public/index.html"))
+    //The token is not legit
+    } catch {
+        return res.status(301).redirect("/app/login"); 
+    }
+});
 
+
+//Login Logic
 app.get("/app/login", (req, res) => {
+    //Returns login.html
     res.status(200).sendFile(path.join(__dirname, "/public/login.html"))
-})
+});
 
-//Checks if fields passed to endpoint satisfy requirement
+
+//Middleware for /sign-in route. Checks if fields passed in HTTP Body satisfy required lengths.
 app.use("/user/sign-in", body('username').isLength( {min: 6} ), body('password').isLength({ min: 6 }), (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
     next();
-})
+});
 
+
+//Second Middleware for /sign-in route. Checks if username and password combo exists in database.
 app.use("/user/sign-in", (req, res, next) => {
     const user = db.prepare("SELECT * FROM userdata WHERE username = ? AND password = ?").get(req.body.username, req.body.password);
     if (user === undefined) {
         return res.status(400).json({errors: "Username and password is not valid"});
     }; 
     next()
-})
+});
 
+
+//Sign-in Logic
 app.post("/user/sign-in", (req, res) => {
+    //Make an access_token
     const token = jwt.sign({username: req.body.username}, secret.SECRET)
+    //Place access token in cookie and gift it to user
     res.cookie("access_token", token, {
         httpOnly: true,
     })
     .status(301)
-    .redirect("/app")
-})
+    .redirect("/app/dashboard")
+});
 
 
+//Middleware for /sign-up route. Checks if fields passed in HTTP Body satisfy required lengths.
 app.use("/user/sign-up", body('username').isLength( {min: 6} ), body('email').isEmail(), body('password').isLength({ min: 6 }), (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
     next();
-})
+});
 
 
-//Checks if username already exists
+//Second Middleware for /sign-up route. Checks if username exists in database. If so, the user must choose another username. 
 app.use("/user/sign-up", (req, res, next) => {
     const results = db.prepare("SELECT * FROM userdata WHERE username = ?").get(req.body.username);
     if (results !== undefined) {
-        return res.status(400).json({ errors: "Username already exists"}); 
+        return res.status(400).json({ errors: "Username already exists" }); 
     }
     next()
+}); 
+
+
+//Sign-up logic. 
+app.post("/app/user/sign-up", (req, res) => {
+    try {
+        const results = db.prepare("INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)").run(req.body.username, req.body.password, req.body.email); 
+        return res.status(301).redirect('/app/login')
+    }
+    catch {
+        return res.status(400).json({ errors: "Signup Unsuccessful" })
+    }
 })
 
-// app.post("/app/user/sign-up", (req, res) => {
-    
-// })
 
+//Clears cookie from user and returns them to sign-in page. 
 app.get("/user/sign-out", (req, res) => {
     const token = req.cookies.access_token
     if (token === undefined) {
         return res.status(301).redirect("/app/login")
     }
-    res.clearCookie('access_token').status(301).redirect("/app")
+    res.clearCookie('access_token').status(301).redirect("/app/login")
 });
+
 
 app.use((req, res) => {
     res.status(404).send('Not Found'); 
