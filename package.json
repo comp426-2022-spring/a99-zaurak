@@ -24,6 +24,7 @@
   "homepage": "https://github.com/comp426-2022-spring/a99-zaurak#readme",
   "dependencies": {
     "better-sqlite3": "^7.5.0",
+    "chart.js": "^3.7.1",
     "cookie-parser": "^1.4.6",
     "express": "^4.17.3",
     "express-validator": "^6.14.0",
