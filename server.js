@@ -4,6 +4,7 @@ const secret = require("./secret");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser"); 
 const db = require("./database"); 
+const transporter = require("./mail")
 const { body, validationResult } = require('express-validator');
 const app = express();
 const port = 3000; 
@@ -101,7 +102,7 @@ app.use("/user/sign-up", (req, res, next) => {
 
 
 //Sign-up logic. 
-app.post("/app/user/sign-up", (req, res) => {
+app.post("/user/sign-up", (req, res) => {
     try {
         const results = db.prepare("INSERT INTO userdata (username, password, email) VALUES (?, ?, ?)").run(req.body.username, req.body.password, req.body.email); 
         return res.status(301).redirect('/app/login')
@@ -109,6 +110,45 @@ app.post("/app/user/sign-up", (req, res) => {
     catch {
         return res.status(400).json({ errors: "Signup Unsuccessful" })
     }
+})
+
+app.use("/user/send-password-reset", body('email').isEmail(), (req, res) => {
+    const errors = validationResults(req);
+    if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() })
+    }
+    next()
+})
+
+app.use("/user/send-password-reset", (req, res) => {
+    const user = db.prepare('SELECT * FROM userdata WHERE email = ?').get(req.body.email);
+    if (user === undefined) {
+        res.status(400).json({ errors: "No User With That Email Found." });
+    }
+    next()
+})
+
+
+app.post("/user/send-password-reset"), async (req, res) => {
+    try {
+        const code = Math.random() * 10000
+        const info = await transporter.sendMail({
+            to: req.body.email,
+            from: "zaurakapp@gmail.com",
+            subject: "Here's a temporary password.",
+            text: code,
+        });
+        db.prepare('UPDATE userdata SET password = ? WHERE email = ?').run(code, req.body.email)
+        return res.status(200); 
+    }
+    catch {
+        res.status(400).json({ errors: 'Error sending reset code.' })
+    }
+}
+
+
+app.post("/user/", (req, res) => {
+    
 })
 
 
