@@ -46,6 +46,11 @@ app.get("/app/login", (req, res) => {
     res.status(200).sendFile(path.join(__dirname, "/public/login.html"))
 });
 
+//Account logic
+app.get("/app/account", (req, res) => {
+    res.status(200).sendFile(path.join(__dirname, "/public/account.html"))
+})
+
 
 //Middleware for /sign-in route. Checks if fields passed in HTTP Body satisfy required lengths.
 app.use("/user/sign-in", body('username').isLength( {min: 6} ), body('password').isLength({ min: 6 }), (req, res, next) => {

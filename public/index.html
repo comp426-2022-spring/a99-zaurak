@@ -44,7 +44,8 @@
         <input type="submit" value="North Carolina">
         <input type="submit" value="United States">
         <input type="submit" value="World">
-        <input type='submit' value="My Account">
+        <input type='submit' value="My Account" onclick="goToAccount()">
+        <!--a href="public/account.html">Account</a!-->
 
 
         <form onsubmit="handlelogout(event)">
@@ -52,6 +53,14 @@
         </form>
     </body>
     <script>
+        function goToAccount() {
+            fetch("/app/account", {
+                method: 'GET',
+                redirect: 'follow'
+            }).then(res => {
+                    window.location.href = res.url;
+            })
+            }
         const handlelogout = (e) => {
             e.preventDefault();
             fetch("/user/sign-out", {
