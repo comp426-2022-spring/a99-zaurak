@@ -59,18 +59,27 @@ h1 {
     cursor: pointer;
 }
 
+.user-items {
+    list-style: none;
+}
+
+.user-items li {
+    padding: 1rem 0rem;
+    width: 75px;
+    text-align: center;
+}
+
 
 .nav-items {
     display: flex;
     flex-direction: column;
-    height: 70%;
+    height: 50%;
     position: relative;
 }
 
 .nav-items li {
     list-style: none;
     padding: 1.2rem 0rem;
-    margin-bottom: 0.5rem;
     width: 75px;
     text-align: center;
     position: relative;
