@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Trispace:wght@200;500&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Trispace', sans-serif;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper-two {
+    width: 80vw;
+    height: 85vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(253, 253, 253);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-side {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(253, 253, 253);
+}
+
+.left-side svg {
+    width: 90%;
+}
+
+.login-page {
+    height: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    position: relative;
+    /* box-shadow: 10px 10px 50px rgb(228, 228, 228); */
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 3%;
+
+}
+
+.header svg {
+    margin-right: 0.25rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    align-items: center;
+}
+
+.login-form label {
+    margin: 1rem 0rem .25rem 0rem;
+    position: relative;
+}
+
+.login-form input {
+    width: 400px;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    background-color: rgba(231, 231, 231, 0.753);
+    position: relative;
+}
+
+.login-form input[type=text] {
+    text-align: center;
+}
+
+
+
+.login-form input[type=text]:focus {
+    background-color: rgb(169, 196, 253);
+}
+
+#submit-button {
+    width: 200px;
+    margin-top: 2rem;
+    background-color: rgb(109, 155, 255);
+}
+
+#submit-button:hover {
+    cursor: pointer;
+    background-color: rgb(172, 197, 252);
+}
+
+#username {
+    position: absolute;
+    top: 12.5px;
+    left: 15px; 
+    z-index: 10;
+}
+
+.add-color {
+    background-color: rgb(109, 155, 255);
+}
