@@ -94,19 +94,19 @@
             <div class="grid-container">
                 <div class="grid1">
                     <label for="fname">First name:</label><br>
-                    <input type="text" id="fname" name="fname" placeholder="Eric">
+                    <input type="text" id="fname" name="fname" placeholder="">
                 </div>
                 <div class="grid2">
                     <label>Last name:</label><br>
-                    <input type="text" id="lname" name="lname" placeholder="Le">
+                    <input type="text" id="lname" name="lname" placeholder="">
                 </div>
                 <div class="grid3">
                     <label>Username:</label><br>
-                    <input type="text" id="uname" name="uname" placeholder="ericle">
+                    <input type="text" id="uname" name="uname" placeholder="">
                 </div>
                 <div class="grid4">
                     <label>Email:</label><br>
-                    <input type="text" id="email" name="email" placeholder="eric@unc.edu">
+                    <input type="text" id="email" name="email" placeholder="">
                 </div>
                 <div class="update">
                     <Button id="updatebtn" onclick="update()">Update</Button>
@@ -118,6 +118,12 @@
         </div>
     </body>
     <script>
-
+        function update() {
+            document.getElementsByName("fname")[0].placeholder=document.getElementById('fname').value;
+            document.getElementsByName("lname")[0].placeholder=document.getElementById('lname').value;
+            document.getElementsByName("uname")[0].placeholder=document.getElementById('uname').value;
+            document.getElementsByName("email")[0].placeholder=document.getElementById('email').value;
+            // change in database?
+        }
     </script>
 </html>

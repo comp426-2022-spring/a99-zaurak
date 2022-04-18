@@ -64,10 +64,19 @@ body {
             <label for="password"><b>Password:</b></label>
             <input type="text" id="password" name="password" placeholder="Enter Password">
             <input type="submit" value="Submit" id="submit">
+            <input type="submit" value="Create Account" id="create" onclick="goToAccount()">
         </form>
     </main>
 </body>
     <script>
+        function goToAccount() {
+            fetch("/app/account", {
+                method: 'GET',
+                redirect: 'follow'
+            }).then(res => {
+                window.location.href = res.url;
+            })
+            }
         const handlelogin = (e) => {
             e.preventDefault();
             const username = document.getElementById("username").value;
