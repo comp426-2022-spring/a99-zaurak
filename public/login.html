@@ -58,17 +58,26 @@ body {
 <body>
     <h1 id="login-title" style="color:white">Login</h1>
     <main id="main-holder">
-        <form onsubmit="handlelogin(event)" id="login-form">
+        <form id="login-form">
             <label for="username"><b>Username:</b></label>
             <input type="text" id="username" name="username" placeholder="Enter Username">
             <label for="password"><b>Password:</b></label>
             <input type="text" id="password" name="password" placeholder="Enter Password">
-            <input type="submit" value="Submit" id="submit">
+            <input type="submit" value="Submit" id="submit" onclick="handlelogin(event)">
+            <input type="submit" value="Create Account" id="create" onclick="goToAccount()">
         </form>
     </main>
 </body>
     <script>
-        const handlelogin = (e) => {
+        function goToAccount() {
+            fetch("/app/account", {
+                method: 'GET',
+                redirect: 'follow'
+            }).then(res => {
+                window.location.href = res.url;
+            })
+            }
+        function handlelogin(e) {
             e.preventDefault();
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value; 
