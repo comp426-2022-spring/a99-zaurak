@@ -32,7 +32,8 @@
     </div>
     <script>
         window.onload = () => {
-            makeChart('global')
+            makeChart('global');
+            getData();
         }
 
         // const getData = () => {
@@ -45,11 +46,22 @@
         //     })
         //     .then(res => res.json())
         //     .then(data => makeChart(data))
+
+        const getData = async () => {
+            const res = await fetch("https://api.covid19api.com/summary", {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }); 
+            return await res.json(); 
+        }
             
 
-        const makeChart = (id) => {
+        const makeChart = async (id) => {
+            const data = await getData(); 
             data_hash = {
-                global: [30, 19, 3, 5, 2], 
+                global: [data['Global']['NewConfirmed']],
                 home: [10, 19, 3, 5, 2], 
                 map: [5, 19, 3, 5, 2], 
             }
@@ -63,7 +75,7 @@
             const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['04/01/2022', '04/02/2022', '04/03/2022', '04/04/2022', '04/05/2022'],
+                labels: ['Current'],
                 datasets: [{
                     label: '# of New Cases',
                     data: data_hash[id],
@@ -74,18 +86,7 @@
                     'rgba(255, 159, 64, 1)',
                     ],
                     borderWidth: 1
-                },
-                {
-                    label: '# Of Deaths',
-                    data: data_hash[id],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                    ],
-                    borderWidth: 1
-                }]
+                },]
             },
             options: {
                 scales: {
