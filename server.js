@@ -21,6 +21,10 @@ app.get("/", (req, res) => {
     res.redirect("/app/dashboard")
 });
 
+app.get("/styles", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/styles.css"))
+})
+
 
 //Dashboard Logic
 app.get("/app/dashboard", (req, res) => {
@@ -33,7 +37,7 @@ app.get("/app/dashboard", (req, res) => {
     //The cookie exists, verify the token inside is legitimate
     try {
         const data = jwt.verify(token, secret.SECRET);
-        return res.status(200).sendFile(path.join(__dirname, "/public/index.html"))
+        return res.status(200).sendFile(path.join(__dirname, "/public/prototype.html"))
     //The token is not legit
     } catch {
         return res.status(301).redirect("/app/login"); 
