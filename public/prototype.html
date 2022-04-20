@@ -60,10 +60,16 @@
 
         const makeChart = async (id) => {
             const data = await getData(); 
+            let i = 0;
+            while ([data['Countries'][i].CountryCode] != 'US') {
+                i++;    
+            }
+            // const usdata = [data['Countries'][i].NewConfirmed];
+            // console.log(usdata);
             data_hash = {
-                global: [data['Global']['NewConfirmed']],
-                home: [10, 19, 3, 5, 2], 
-                map: [5, 19, 3, 5, 2], 
+                global: [data['Global'].NewConfirmed],
+                map: [data['Countries'][i].NewConfirmed], 
+                home: [5, 19, 3, 5, 2], 
             }
             const current_ctx = document.getElementsByTagName('canvas')[0];
             console.log(current_ctx); 
