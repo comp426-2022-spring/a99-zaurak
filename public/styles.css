@@ -115,3 +115,8 @@ h1 {
 .not-active:hover{
     border-right: solid #f8826d80 3px;
 }
+
+#name {
+    position:relative;
+    top: 50px;
+}
