@@ -1,15 +1,7 @@
-You will want to change the text in this file to be the text of the license for your project.
+This file is part of A99-Zaurak.
 
-Information about choosing a license can be found here:
+A99-Zaurak is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-[Licensing a repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
+Foobar is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-[Choose an open source license](https://choosealicense.com/)
-
-[SPDX License List](https://spdx.org/licenses/)
-
-[Browse Software Licenses and Summaries](https://tldrlegal.com/licenses/browse)
-
-[How to choose a license for your own work](https://www.gnu.org/licenses/license-recommendations.en.html) - GNU Operating System
-
-[Public license selector](https://ufal.github.io/public-license-selector/) - Institute of Formal and Applied Linguistics (ÚFAL), Faculty of Mathematics and Physics, Charles University
+You should have received a copy of the GNU General Public License along with Foobar. If not, see <https://www.gnu.org/licenses/>.
