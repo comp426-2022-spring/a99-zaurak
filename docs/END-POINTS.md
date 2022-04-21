@@ -1,4 +1,4 @@
-Endpoints
+# Endpoints Word Documentation
 
 1.	‘/’
     Redirects to the /app/dashboard endpoint.
