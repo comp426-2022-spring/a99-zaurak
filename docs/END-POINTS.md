@@ -21,7 +21,7 @@
 7.	/user/send-password-reset
     It will perform a series of actions to allow existing user to reset password. It first checks for any errors on the request object. As long as no errors are thrown, an email will be sent to the user with a temporary password. If an error occurs whent the email is trying to be sent, an error saying "Error sending reset code" will be thrown. 
     
-8.	/covid19-data/:location (ARE WE USING IT?)
+8. /user/
 
 9.	/user/sign-out
     It first checks that the client has a valid cookie token which means that the client is currently signed in. If the client does not have a valid token, he/she will be redirected to /app/login since they are not signed in. If the client does have a valid token, it effectively errases the cookie or token given to the client,  and then redirects the user to app/login.

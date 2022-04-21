@@ -155,16 +155,6 @@ app.post("/user/send-password-reset"), async (req, res) => {
     }
 }
 
-app.get('/covid19-data/:location', (req, res) => {
-    const location = req.params.location;
-    //Try to query database for data, if not there, fecth data from api and insert
-    const data = db.prepare("SELECT * from covidata where date = ?").run(new Date().toLocaleString())
-    if (data === undefined) {
-        //fetch
-    }
-    
-});
-
 
 // app.post("/user/", (req, res) => {
     
