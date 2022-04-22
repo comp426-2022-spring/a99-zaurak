@@ -48,13 +48,21 @@ app.get("/app/dashboard", (req, res) => {
 //Login Logic
 app.get("/app/login", (req, res) => {
     //Returns login.html
-    res.status(200).sendFile(path.join(__dirname, "/public/login.html"))
+    res.status(200).sendFile(path.join(__dirname, "/public/login-v2.html"))
 });
+
 
 //Account logic
 app.get("/app/account", (req, res) => {
     res.status(200).sendFile(path.join(__dirname, "/public/account.html"))
 })
+
+//Signup Logic
+app.get("/app/signup", (req, res) => {
+    //Returns login.html
+    res.status(200).sendFile(path.join(__dirname, "/public/signup.html"))
+});
+
 
 
 //Middleware for /sign-in route. Checks if fields passed in HTTP Body satisfy required lengths.
