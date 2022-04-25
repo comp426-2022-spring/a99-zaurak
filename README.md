@@ -1,17 +1,14 @@
 # Zaurak a99 Final Project
 
-## Team mangement
-
-Some basic roles you will want to consider:
+## Team mangement 
 
 1. A review manager, project manager, release manager, plan manager --> Brantley
 2. A documentation manager --> Gabriel
 5. Roles for team members to take charge or different parts of the project. Possible roles:
-    1. Front end lead Nicholas, Eric
-    2. Back end lead Gabriel, Brantley
-    3. Database lead Brantley, Eric
-    4. Design lead
-    5. Etc.
+    1. Front end lead --> Nicholas, Eric, Ashwin
+    2. Back end lead --> Gabriel, Brantley
+    3. Database lead --> Brantley, Gabriel
+    4. Design lead --> Eric, Nicholas Brantley
 
 # Covid Dashboard Description
 

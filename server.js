@@ -112,6 +112,7 @@ app.use("/user/sign-up", body('username').isLength( {min: 6} ), body('email').is
 app.use("/user/sign-up", (req, res, next) => {
     const results = db.prepare("SELECT * FROM userdata WHERE username = ?").get(req.body.username);
     if (results !== undefined) {
+        console.log("strange errors")
         return res.status(400).json({ errors: "Username already exists" }); 
     }
     next()
