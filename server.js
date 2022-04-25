@@ -48,13 +48,21 @@ app.get("/app/dashboard", (req, res) => {
 //Login Logic
 app.get("/app/login", (req, res) => {
     //Returns login.html
-    res.status(200).sendFile(path.join(__dirname, "/public/login.html"))
+    res.status(200).sendFile(path.join(__dirname, "/public/login-v2.html"))
 });
+
 
 //Account logic
 app.get("/app/account", (req, res) => {
     res.status(200).sendFile(path.join(__dirname, "/public/account.html"))
 })
+
+//Signup Logic
+app.get("/app/signup", (req, res) => {
+    //Returns login.html
+    res.status(200).sendFile(path.join(__dirname, "/public/signup.html"))
+});
+
 
 
 //Middleware for /sign-in route. Checks if fields passed in HTTP Body satisfy required lengths.
@@ -104,6 +112,7 @@ app.use("/user/sign-up", body('username').isLength( {min: 6} ), body('email').is
 app.use("/user/sign-up", (req, res, next) => {
     const results = db.prepare("SELECT * FROM userdata WHERE username = ?").get(req.body.username);
     if (results !== undefined) {
+        console.log("strange errors")
         return res.status(400).json({ errors: "Username already exists" }); 
     }
     next()
@@ -154,16 +163,6 @@ app.post("/user/send-password-reset"), async (req, res) => {
         res.status(400).json({ errors: 'Error sending reset code.' })
     }
 }
-
-app.get('/covid19-data/:location', (req, res) => {
-    const location = req.params.location;
-    //Try to query database for data, if not there, fecth data from api and insert
-    const data = db.prepare("SELECT * from covidata where date = ?").run(new Date().toLocaleString())
-    if (data === undefined) {
-        //fetch
-    }
-    
-});
 
 
 // app.post("/user/", (req, res) => {
