@@ -49,7 +49,7 @@
 
         const createData = async (id) => {
             let date = new Date()
-            date.setDate(date.getDate()-2)
+            date.setDate(date.getDate()-35)
             const chart_data = [[],[]]
             let weekly_data = 0
             for (let i = 0; i < 5; i++) {
@@ -60,7 +60,6 @@
                     for (let data_point in raw_data) {
                         if (id == 'NC') {
                             if (raw_data[data_point].state == 'NC') {
-                                //document.getElementById('name').innerHTML += ' hit '
                                 weekly_data += Number(raw_data[data_point].new_case)
                             }
                             
@@ -70,13 +69,12 @@
                         }
 
                     }
-                    date.setDate(date.getDate() - 1)
+                    date.setDate(date.getDate() + 1)
                 }
 
-                chart_data[0].push(date.toISOString().split('T')[0] + '-' + chart_data[0].pop())
+                chart_data[0].push(chart_data[0].pop() + ' - ' + date.toISOString().split('T')[0])
                 chart_data[1].push(weekly_data)
                 weekly_data = 0
-                date.setDate(date.getDate() - 1)
             }
             return chart_data;
         }
