@@ -25,9 +25,9 @@ Run `npm install` inside the package root directory.
 This package was build using Node.js LTS (16.x).
 Other package dependency and version information can be found in `package.json`.
 
-# Coinserver Runtime Documentation
+# Covid Dashboard Runtime Documentation
 ```
-npm test - Start app, check that everything can run, and then stop app.
+npm test - Starts app.
 npm run - Command to bring up all parts of the app/system’s server scripts.
 
 ```
