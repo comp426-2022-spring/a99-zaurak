@@ -55,23 +55,30 @@
             for (let i = 0; i < 5; i++) {
                 chart_data[0].push(date.toISOString().split('T')[0])
                 let raw_data
-                for (let j = 0; j < 7; j++) {
-                    raw_data = await getData(date.toISOString().split('T')[0])
-                    for (let data_point in raw_data) {
-                        if (id == 'NC') {
+                if (id == 'NC') {
+                    for (let j = 0; j < 7; j++) {
+                        raw_data = await getNCData(date.toISOString().split('T')[0])
+
+                        for (let data_point in raw_data) {
                             if (raw_data[data_point].state == 'NC') {
                                 weekly_data += Number(raw_data[data_point].new_case)
                             }
-                            
                         }
-                        else if (id == 'US') {
-                            weekly_data += Number(raw_data[data_point].new_case)
-                        }
-
+                        date.setDate(date.getDate() + 1)
                     }
-                    date.setDate(date.getDate() + 1)
+                } else {
+                    date.setDate(date.getDate+7)
+                    raw_data = await getGlobalData(chart_data[0][i], date.toISOString().split('T')[0])
+                    for (let data_point in raw_data) {
+                            if (id == 'US') {
+                                if (raw_data[data_point].CountryCode == 'US') {
+                                    weekly_data += Number(raw_data[data_point].NewConfirmed)
+                                }
+                                
+                            }else if (id == 'Global') {
+                                weekly_data += Number(raw_data[data_point].NewConfirmed)
+                            }
                 }
-
                 chart_data[0].push(chart_data[0].pop() + ' - ' + date.toISOString().split('T')[0])
                 chart_data[1].push(weekly_data)
                 weekly_data = 0
@@ -79,8 +86,18 @@
             return chart_data;
         }
 
-        const getData = async (d) => {
+        const getUSData = async (d) => {
             const res = await fetch("https://data.cdc.gov/resource/9mfq-cb36.json?submission_date=" + d, {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }); 
+            return await res.json(); 
+        }
+
+        const getGlobalData = async (d) => {
+            const res = await fetch("https://api.covid19api.com/summary?from=" + d1 + "&to=" + d2, {
                 method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json',
@@ -91,6 +108,7 @@
             
 
         const makeChart = async (id) => {
+            data = await getGlobalData
             data = await createData(id); 
             let i = 0;
             /*while ([data['Countries'][i].CountryCode] != 'US') {
