@@ -35,8 +35,9 @@
 | 3/20/2022 | Full Team | | |
 | 4/4/2022  | Back End | | |
 | 4/7/2022  | Full Team | | |
-| 4/11/2022 | Front End | | |
+| 4/11/2022 | Front End |Go over layout of the login page, dashboard, and accounts page. Implemented navigation between pages.|Get the login and account page ready to give to backend to implement account creation. |
 | 4/14/2022 | Back End |  | |
-| 4/18/2022 | Full Team| | |
-| 4/19/2022 | Full Team| | |
+| 4/18/2022 | Full Team|Updates to the login page. Updates to the dashboard. |Polish up the sign in page. Implement logout feature. |
+| 4/19/2022 | Full Team|Fixed a merge conflict. Started the logic to fetch data from the COVID-19 api to display a graph. |Fetch the US and NC data and display it on a graph. |
+| 4/28/2022 | Full Team|Went over the requirements to figure out the last parts of the project we need to get done.  |Implement logging and database for account creation. |
 
