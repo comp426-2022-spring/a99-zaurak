@@ -11,6 +11,20 @@ h1 {
     font-size: 40px;
     padding-bottom: 3rem;
 }
+h3 {
+    font-family: 'Trispace', sans-serif;
+    font-size: 28px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.rawnumber {
+    font-family: 'Trispace', sans-serif;
+    font-size: 50px;
+    padding: 2rem;
+    color: rgb(239, 88, 0);
+    text-align: center;
+}
 
 .wrapper {
     width: 100vw;
