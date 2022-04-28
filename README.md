@@ -17,7 +17,7 @@ The website developed by the Zaurak team had the following goals:
 
 # Covid Dashboard Description
 
-This package exposes endpoints and provides a web interface to access most recent COVID-19 data. COVID data is presenented in a weekly timframe style. It presents new this up-to-date statistics for three different "areas":
+This package exposes endpoints and provides a web interface to access most recent COVID-19 data. COVID data is presenented in a weekly timframe style. It presents this up-to-date statistics for three different "areas":
 
 1. Global Data
 2. United States Data
