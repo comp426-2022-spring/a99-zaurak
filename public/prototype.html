@@ -26,6 +26,7 @@
             </nav>
             <section class='data' id='data'>
                 <h1 id='name'>Global</h1>
+                <div id="global_data"></div>
                 <canvas></canvas>
             </section>
         </div>
@@ -55,30 +56,24 @@
             for (let i = 0; i < 5; i++) {
                 chart_data[0].push(date.toISOString().split('T')[0])
                 let raw_data
-                if (id == 'NC') {
+                if (id == 'Global') {
+                    raw_data = await getGlobalData()
+                }
+                else {
                     for (let j = 0; j < 7; j++) {
-                        raw_data = await getNCData(date.toISOString().split('T')[0])
+                        raw_data = await getUSData(date.toISOString().split('T')[0])
 
                         for (let data_point in raw_data) {
-                            if (raw_data[data_point].state == 'NC') {
+                            if (id == 'US') {
+                                weekly_data += Number(raw_data[data_point].new_case)
+                            }
+                            else if (raw_data[data_point].state == 'NC') {
                                 weekly_data += Number(raw_data[data_point].new_case)
                             }
                         }
                         date.setDate(date.getDate() + 1)
                     }
-                } else {
-                    date.setDate(date.getDate+7)
-                    raw_data = await getGlobalData(chart_data[0][i], date.toISOString().split('T')[0])
-                    for (let data_point in raw_data) {
-                            if (id == 'US') {
-                                if (raw_data[data_point].CountryCode == 'US') {
-                                    weekly_data += Number(raw_data[data_point].NewConfirmed)
-                                }
-                                
-                            }else if (id == 'Global') {
-                                weekly_data += Number(raw_data[data_point].NewConfirmed)
-                            }
-                }
+                } 
                 chart_data[0].push(chart_data[0].pop() + ' - ' + date.toISOString().split('T')[0])
                 chart_data[1].push(weekly_data)
                 weekly_data = 0
@@ -96,8 +91,8 @@
             return await res.json(); 
         }
 
-        const getGlobalData = async (d) => {
-            const res = await fetch("https://api.covid19api.com/summary?from=" + d1 + "&to=" + d2, {
+        const getGlobalData = async () => {
+            const res = await fetch("https://api.covid19api.com/summary", {
                 method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json',
@@ -108,17 +103,17 @@
             
 
         const makeChart = async (id) => {
-            data = await getGlobalData
-            data = await createData(id); 
+            if (id == 'Global') {
+                data = await getGlobalData()
+                data = [['All Time Infections',data['Global'].TotalConfirmed],['New Confirmed Infections', data['Global'].NewConfirmed]]
+            }
+            else {
+                data = await createData(id); 
+            }
             let i = 0;
             /*while ([data['Countries'][i].CountryCode] != 'US') {
                 i++;    
             }*/
-            data_hash = {
-                Global: [[1,2,3,4,5],[1, 2, 3, 4, 5]],
-                US: data, 
-                NC: data, 
-            }
             const current_ctx = document.getElementsByTagName('canvas')[0];
             console.log(current_ctx); 
             current_ctx.remove();
@@ -126,13 +121,26 @@
             const ctx = document.createElement('canvas'); 
             const data_section = document.getElementById('data');
             data_section.appendChild(ctx)
+            global_data.innerHTML = ""
+            if (id == 'Global') {
+                for (let i = 0; i < 2; i++) {
+                    let header = document.createElement("H3")
+                    header.innerHTML = data[i][0]
+                    global_data.appendChild(header)
+                    let text = document.createElement("p")
+                    text.classList += 'rawnumber'
+                    text.innerHTML = data[i][1]
+                    global_data.appendChild(text)
+                }
+            }
+            else {
             const myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: data_hash[id][0],
+                labels: data[0],
                 datasets: [{
                     label: '# of New Cases',
-                    data: data_hash[id][1],
+                    data: data[1],
                     backgroundColor: [
                     'rgba(255, 159, 64, 0.2)',
                     ],
@@ -149,7 +157,7 @@
                     }
                 }
             }
-        });
+        })};
         }
         const handleelementclicked = (elem) => {
             if (elem.id == 'logout') {
