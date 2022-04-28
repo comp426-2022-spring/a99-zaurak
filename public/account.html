@@ -59,6 +59,12 @@
             /* align-items: center;
             justify-content: center; */
         }
+        .delete {
+            grid-row-start: 2;
+            grid-row-end: 3;
+            grid-column-start: 3;
+            grid-column-end: 4;
+        }
         #updatebtn {
             background-color: green;
             color: white;
@@ -72,7 +78,7 @@
         /* .grid1, .grid2, .grid3, .grid4 {
             height: 48px;
         } */ 
-        #fname, #lname, #uname, #email {
+        #passw, #uname, #email {
             height: 60px;
         }
         input[type="text"] {
@@ -105,18 +111,14 @@
             <h1 id="accountheader">Account Information</h1>
             <div class="grid-container">
                 <div class="grid1">
-                    <label for="fname">First name:</label><br>
-                    <input type="text" id="fname" name="fname" placeholder="">
-                </div>
-                <div class="grid2">
-                    <label>Last name:</label><br>
-                    <input type="text" id="lname" name="lname" placeholder="">
-                </div>
-                <div class="grid3">
-                    <label>Username:</label><br>
+                    <label for="uname">Username:</label><br>
                     <input type="text" id="uname" name="uname" placeholder="">
                 </div>
-                <div class="grid4">
+                <div class="grid2">
+                    <label>Password:</label><br>
+                    <input type="text" id="passw" name="passw" placeholder="">
+                </div>
+                <div class="grid3">
                     <label>Email:</label><br>
                     <input type="text" id="email" name="email" placeholder="">
                 </div>
@@ -138,6 +140,72 @@
             document.getElementsByName("uname")[0].placeholder=document.getElementById('uname').value;
             document.getElementsByName("email")[0].placeholder=document.getElementById('email').value;
             // change in database?
+        }
+        const handleelementclicked = (elem) => {
+            if (elem.id == 'logout') {
+                handlelogout()
+            }
+            else if (elem.id == 'account') {
+                goToAccount()
+            }
+            else if (elem.className == 'nav-item not-active') {
+                const currActive = document.getElementsByClassName('nav-item active')[0]
+                currActive.className = 'nav-item not-active'
+                elem.className = 'nav-item active'
+                goToDashboard()
+            }
+            
+        }
+
+        const handlemenuchange = (e) => {
+            handleelementclicked(e.target)
+        }
+
+        const handlesvgclick = (e) => {
+            handleelementclicked(e.currentTarget.parentNode)
+        }
+
+        const svgs = document.getElementsByClassName('menu-svg');
+        const svg_arry = [...svgs]
+        svg_arry.forEach(elem => elem.addEventListener('click', handlesvgclick))
+        const all = document.getElementsByClassName('nav-item');
+        const arry = [...all]
+        arry.forEach(elem => elem.addEventListener("click", handlemenuchange))
+
+        function goToAccount() {
+            fetch("/app/account", {
+                method: 'GET',
+                redirect: 'follow'
+            }).then(res => {
+                console.log(res)
+                    window.location.href = res.url;
+            }).catch(err => console.log(err))
+        
+        }
+        const handlelogout = () => {
+            fetch("/user/sign-out", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                redirect: 'follow',
+            }).then(res => {
+                console.log(res)
+                if (res.redirected) {
+                window.location.href = res.url; 
+            }
+            }).catch(err => console.log(err))
+        }
+
+        function goToDashboard() {
+            fetch("/app/dashboard", {
+                method: 'GET',
+                redirect: 'follow'
+            }).then(res => {
+                console.log(res)
+                    window.location.href = res.url;
+            }).catch(err => console.log(err))
+        
         }
     </script>
 </html>
