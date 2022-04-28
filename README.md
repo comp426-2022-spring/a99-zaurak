@@ -1,5 +1,10 @@
 # Zaurak a99 Final Project
 
+The website developed by the Zaurak team had the following goals:
+    - Develope a COVID-19 Dashboard that shows most recent public COVID-Data available
+    - Create an app with login/signup capabilities that requires users to sign in to have acces to the Dashboard
+    - Present bar-graphs of the data and give user some sort of account management capabilities.
+
 ## Team mangement 
 
 1. A review manager, project manager, release manager, plan manager --> Brantley
@@ -12,7 +17,7 @@
 
 # Covid Dashboard Description
 
-This package exposes endpoints and provides a web interface to access most recent COVID-19 data. It presents deaths and new cases for three different "areas":
+This package exposes endpoints and provides a web interface to access most recent COVID-19 data. COVID data is presenented in a weekly timframe style. It presents new this up-to-date statistics for three different "areas":
 
 1. Global Data
 2. United States Data
@@ -23,6 +28,7 @@ This package exposes endpoints and provides a web interface to access most recen
 Run `npm install` inside the package root directory.
 
 This package was build using Node.js LTS (16.x).
+
 Other package dependency and version information can be found in `package.json`.
 
 # Covid Dashboard Runtime Documentation
