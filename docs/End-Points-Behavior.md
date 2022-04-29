@@ -11,7 +11,7 @@ curl http://localhost:3000/
 #### Response body
 
 ```
-{"message":"Your API works! (200)"}
+
 ```
 
 #### Response headers
