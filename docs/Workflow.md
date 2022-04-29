@@ -1,6 +1,15 @@
 # Zaurak Team Planning
 
 ## Goals
+
+### App Specific Goals
+1. Develop an app to display most recent COVID-19 data
+2. Preferebly display data in a bar-graph or other type of visual tool.
+3. Create functionalitie that allows user to create an account on this COVID-19 dashboard.
+4. Restrict dashboard access to registered users.
+5. App will have menu bar where Global data, US data, and NC data can be selected to be displayed.
+6. Menu bar has logout and account buttons.
+
 ### For COMP 426 Staff:
 1. Back-end specifications
     1. API built on whatever framework you choose. You can build an API that interacts with other APIs as well in order to integrate them.
