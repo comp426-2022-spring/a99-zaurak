@@ -1,6 +1,15 @@
 # Zaurak Team Planning
 
 ## Goals
+
+### App Specific Goals
+1. Develop an app to display most recent COVID-19 data
+2. Preferebly display data in a bar-graph or other type of visual tool.
+3. Create functionalitie that allows user to create an account on this COVID-19 dashboard.
+4. Restrict dashboard access to registered users.
+5. App will have menu bar where Global data, US data, and NC data can be selected to be displayed.
+6. Menu bar has logout and account buttons.
+
 ### For COMP 426 Staff:
 1. Back-end specifications
     1. API built on whatever framework you choose. You can build an API that interacts with other APIs as well in order to integrate them.
@@ -30,14 +39,13 @@
 
 | Meeting Date | Team |Discussed| Set Goals|
 | ---- | ----------- | --------- | -------| 
-| 3/24/2022 | Full team | - Go over project requirements, brain stormed ideas, and settle in COVID-19 statistics as topic | Look for existing apps, think on what each would like to do, start sketching functioinalities|
-| 3/31/2022 | Full Team | Go over exisiting dashboard examples, discussed functionality, and defined roles| Seth/Gabriel designated as Back-end team, Ashwin/Nicholas/Eric designated as Front-end team, |
-| 3/20/2022 | Full Team | | |
-| 4/4/2022  | Back End | | |
-| 4/7/2022  | Full Team | | |
+| 3/24/2022 | Full team | Go over project requirements, brain stormed ideas, and settle in COVID-19 statistics as topic | Look for existing apps, think on what each would like to do, start sketching functioinalities|
+| 3/31/2022 | Full Team | Go over exisiting dashboard examples, discussed functionality, and defined roles| Seth/Gabriel designated as Back-end team, Ashwin/Nicholas/Eric designated as Front-end team, sketching completed, start coding|
+| 4/4/2022  | Back End | Go over Brantleys code on API endpoints, and talked about data base creation for username and password | Continue to clean up end-points, add sign-up and account endpoint, connect user database. |
 | 4/11/2022 | Front End |Go over layout of the login page, dashboard, and accounts page. Implemented navigation between pages.|Get the login and account page ready to give to backend to implement account creation. |
-| 4/14/2022 | Back End |  | |
+| 4/14/2022 | Back End | Go over functionality of all end-points, new front-end layout, and database logic  | Fix sign-up to effectively add users to the database, and ensure a new html page is created fo that as well|
 | 4/18/2022 | Full Team|Updates to the login page. Updates to the dashboard. |Polish up the sign in page. Implement logout feature. |
 | 4/19/2022 | Full Team|Fixed a merge conflict. Started the logic to fetch data from the COVID-19 api to display a graph. |Fetch the US and NC data and display it on a graph. |
-| 4/28/2022 | Full Team|Went over the requirements to figure out the last parts of the project we need to get done.  |Implement logging and database for account creation. |
+| 4/28/2022 | Full Team| Went over the requirements to figure out the last parts of the project we need to get done.  |Implement logging and database for account creation. |
+| 4/29/2022 | Full Team| Went over the requirements to figure out the last parts of the project we need to get done.  |Implement logging and database for account creation. |
 
