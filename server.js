@@ -165,11 +165,6 @@ app.post("/user/send-password-reset"), async (req, res) => {
 }
 
 
-// app.post("/user/", (req, res) => {
-    
-// })
-
-
 
 //Clears cookie from user and returns them to sign-in page. 
 app.get("/user/sign-out", (req, res) => {
