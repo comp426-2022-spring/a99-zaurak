@@ -7,12 +7,13 @@
     Checks whether the user has logged in. If it has not logged in, it redirects the user to /app/login. Else, it will go straight to the dashboard. If user is not authorized an error is thrown.
 
 3.	/app/login
-    It sends a response to the user containing the html login file. The user will see a screen with two fields to fill: username and password. Underneath this field, there are two buttons: submit and create account.
+    It sends a response to the user containing the html login file. The user will see a screen with two fields to fill: username and password. To the side of these fields, there are two buttons: submit and create account.
 
 4.	/app/account
     It sends a response to the user containing html for creating an account.
 
 5. /app/signup
+    It sends a response to the user containing the html signup file. The user will see a screen with three fields to fill: username, password, and email. To the side of these fields, there are two buttons: submit and create account.
 
 6.	/user/sign-in
     It will perform a series of actions to verify the existence and validity of a Username-Password pair. It first checks whether the password and username entered pass the minimum requirement to be valid (are they long enough?). Then, it looks in the database and checks if the Username-Password pair matches. If it does, it creates a cookie for the user to stayed signed in, and it redirects the user to /app/dashboard endpoint. If the Username-Password pair does not exist, a message indicating that Username or Password is not valid will be display.
