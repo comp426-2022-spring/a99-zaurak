@@ -14,7 +14,7 @@ The website developed by the Zaurak team had the following goals:
     2. Back end lead --> Gabriel, Brantley
     3. Database lead --> Brantley, Gabriel, Nicholas 
     4. Design lead --> Eric, Nicholas, Brantley
-    5. Documentation leas --> Ashwin
+    5. Documentation lead --> Ashwin
 
 # Covid Dashboard Description
 

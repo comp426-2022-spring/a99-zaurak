@@ -32,8 +32,7 @@
 
 6. Self/group evaluation (Individual group members: this is part of the final exam for the course.)
 
-## App Specific Goals
-    - Develop an app to display COVID-19 data
+
 
 ## Team Schedule
 
