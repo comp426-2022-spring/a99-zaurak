@@ -14,9 +14,6 @@
             font-size: 50px;
             text-align: center;
         }
-        /* body {
-            background-color: grey;
-        } */
         .grid-container {
             display: inline-grid;
             column-gap: 100px;
@@ -34,39 +31,35 @@
             justify-content: center;
             padding: 5rem;
         }
-        
+        /* Username box position*/
         .grid1 {
             grid-row-start: 1;
             grid-row-end: 2;
             grid-column-start: 1;
             grid-column-end: 2;
         }
+        /* Password box position*/
         .grid2 {
             grid-row-start: 1;
             grid-row-end: 2;
             grid-column-start: 2;
             grid-column-end: 3;
         }
+        /* Email box position*/
         .grid3 {
             grid-row-start: 2;
             grid-row-end: 3;
             grid-column-start: 1;
             grid-column-end: 2;
         }
-        .grid4 {
-            grid-row-start: 2;
-            grid-row-end: 3;
-            grid-column-start: 2;
-            grid-column-end: 3;
-        }
+        /* Update button position*/
         .update {
             grid-row-start: 1;
             grid-row-end: 2;
             grid-column-start: 3;
             grid-column-end: 4;
-            /* align-items: center;
-            justify-content: center; */
         }
+        /* Delete button position */
         .delete {
             grid-row-start: 2;
             grid-row-end: 3;
@@ -83,12 +76,11 @@
             color: white;
             padding: 15px 32px;
         }
-        /* .grid1, .grid2, .grid3, .grid4 {
-            height: 48px;
-        } */ 
+
         #passw, #uname, #email {
             height: 60px;
         }
+        /* input box styling */
         input[type="text"] {
             border: 3px solid #f8826d;
             font-size: 20px;
@@ -142,12 +134,12 @@
         </div>
     </body>
     <script>
+        // Changes placeholder when users update info
         function update() {
             document.getElementsByName("fname")[0].placeholder=document.getElementById('fname').value;
             document.getElementsByName("lname")[0].placeholder=document.getElementById('lname').value;
             document.getElementsByName("uname")[0].placeholder=document.getElementById('uname').value;
             document.getElementsByName("email")[0].placeholder=document.getElementById('email').value;
-            // change in database?
         }
         const handleelementclicked = (elem) => {
             if (elem.id == 'logout') {
@@ -204,7 +196,7 @@
             }
             }).catch(err => console.log(err))
         }
-
+        // Reroute function to go back to dashboard
         function goToDashboard() {
             fetch("/app/dashboard", {
                 method: 'GET',
