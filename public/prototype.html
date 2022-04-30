@@ -191,6 +191,7 @@
         const arry = [...all]
         arry.forEach(elem => elem.addEventListener("click", handlemenuchange))
 
+        // Reroutes to accounts page when you click account button
         function goToAccount() {
             fetch("/app/account", {
                 method: 'GET',
