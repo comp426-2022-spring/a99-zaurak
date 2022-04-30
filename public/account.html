@@ -136,11 +136,11 @@
     <script>
         // Changes placeholder when users update info
         function update() {
-            document.getElementsByName("fname")[0].placeholder=document.getElementById('fname').value;
-            document.getElementsByName("lname")[0].placeholder=document.getElementById('lname').value;
             document.getElementsByName("uname")[0].placeholder=document.getElementById('uname').value;
+            document.getElementsByName("passw")[0].placeholder=document.getElementById('passw').value;
             document.getElementsByName("email")[0].placeholder=document.getElementById('email').value;
         }
+        // Handles what happens when you click on nav buttons
         const handleelementclicked = (elem) => {
             if (elem.id == 'logout') {
                 handlelogout()
@@ -182,6 +182,7 @@
             }).catch(err => console.log(err))
         
         }
+        // handles log out, sends you back to login page
         const handlelogout = () => {
             fetch("/user/sign-out", {
                 method: 'GET',
