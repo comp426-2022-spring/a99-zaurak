@@ -12,8 +12,9 @@ The website developed by the Zaurak team had the following goals:
 5. Roles for team members to take charge or different parts of the project. Possible roles:
     1. Front end lead --> Nicholas, Eric, Ashwin
     2. Back end lead --> Gabriel, Brantley
-    3. Database lead --> Brantley, Gabriel
-    4. Design lead --> Eric, Nicholas Brantley
+    3. Database lead --> Brantley, Gabriel, Nicholas 
+    4. Design lead --> Eric, Nicholas, Brantley
+    5. Documentation leas --> Ashwin
 
 # Covid Dashboard Description
 
@@ -32,10 +33,10 @@ This package was build using Node.js LTS (16.x).
 Other package dependency and version information can be found in `package.json`.
 
 # Covid Dashboard Runtime Documentation
-```
-npm test - Starts app.
-npm run - Command to bring up all parts of the app/system’s server scripts.
 
-```
+1. npm test - Start app, check that everything can run, and then stop app.
+2. npm run - Command to bring up all parts of the app/system’s server scripts.
+
+
 
 
