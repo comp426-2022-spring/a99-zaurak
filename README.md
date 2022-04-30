@@ -2,10 +2,10 @@
 
 The website developed by the Zaurak team had the following goals:
     - Develope a COVID-19 Dashboard that shows most recent public COVID-Data available
-    - Create an app with login/signup capabilities that requires users to sign in to have acces to the Dashboard
+    - Create an app with login/signup capabilities that requires users to sign in to have access to the Dashboard
     - Present bar-graphs of the data and give user some sort of account management capabilities.
 
-## Team mangement 
+## Team management 
 
 1. A review manager, project manager, release manager, plan manager --> Brantley
 2. A documentation manager --> Gabriel
@@ -36,6 +36,13 @@ Other package dependency and version information can be found in `package.json`.
 
 1. npm test - Start app, check that everything can run, and then stop app.
 2. npm run - Command to bring up all parts of the app/system’s server scripts.
+
+# User Instructions
+After you install the package and dependencies and start the app:
+1. Click the "create" button to create an account. Select a unique username and password that you will remember and provide an email address that you have access to.
+2. Sign in with your username and password and click submit.
+3. Navigate the app using the navigation buttons on the left side of your screen. *Click on the space around the icons, not the icon itself*
+4. Click the logout button in the bottom left to exit the app.
 
 
 
