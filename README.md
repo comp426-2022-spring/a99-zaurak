@@ -1,7 +1,7 @@
 # Zaurak a99 Final Project
 
 The website developed by the Zaurak team had the following goals:
-    - Develope a COVID-19 Dashboard that shows most recent public COVID-Data available
+    - Develop a COVID-19 Dashboard that shows most recent public COVID-Data available
     - Create an app with login/signup capabilities that requires users to sign in to have access to the Dashboard
     - Present bar-graphs of the data and give user some sort of account management capabilities.
 
